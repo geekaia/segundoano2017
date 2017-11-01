@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotas com angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+</head>
+<body ng-app="rotasAngu">
+<input type="text" ng-model="mensagem" />
+
+<a href="#/!">Primeira página</a>
+<a href="#!pag1">Primeira página</a>
+<a href="#!pag2">Segunda página</a>
+
+<div ng-view>
+</div>
+<!-- proxy: 192.168.0.1 porta: 3128 -->
+<script>
+    var app = angular.module("rotasAngu", ['ngRoute']);
+    app.config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl : "main.html"
+            })
+            .when("/pag1", {
+                templateUrl: "pag1.html"
+            })
+            .when("/pag2", {
+                templateUrl: "pag2.html"
+            });
+    });
+
+</script>
+
+</body>
+</html>

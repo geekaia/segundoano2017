@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Distribuição</title>
+
+      <script>
+          // fazendo os clusters
+          var grupos = new Array();
+
+          function geraGrupos () {
+              grupos = new Array();
+              var text="";
+              var lista = new Array();
+              var lem;
+              var quantgrupos =parseInt( document.getElementById("quantgrupos").value);
+
+              var matrizNomes =  new Array();
+
+              var nomesv = document.getElementById("usuarios").value;
+              nomesv = nomesv.split("\n");
+              lem = nomesv.length;
+
+              while (true) {
+                  var valor = Math.floor((Math.random() * lem)+1);
+                  var tem=0;
+                  for (var i = 0; i < lista.length; i++)
+                  {
+                      if(lista[i] == valor) {
+                          tem=1;
+                          break;
+                      }
+                  }
+
+                  if (tem == 0) {
+                      lista.push(valor);
+                  }
+
+                  if (lista.length == lem) {
+                      break;
+                  }
+              }
+
+              var cont=1;
+              var grupo;
+              var quanperm;
+              while( lista.length != 0 ) {
+                  grupo = new Array();
+
+                  // Caso haja 3 pessoas
+                  quanperm = quantgrupos;
+
+                  if( lista.length == ( quanperm+1 ))
+                  {
+                      quanperm = 3;
+                  }
+                  while (true) {
+                      grupo.push( lista.pop() );
+
+                      if( grupo.length == quanperm )
+                          break;
+                  }
+
+
+                  grupos.push(grupo);
+              }
+
+              for(var i=0; i < grupos.length; i++) {
+                  text += "Grupo "+(i+1) +": ";
+                  grupo= grupos[i];
+                  for (var j=0; j< grupo.length; j++) {
+
+                      if (grupos[i][j] == undefined)
+                          continue;
+
+                      text += nomesv[grupos[i][j]-1];//+" ind <b>"+grupos[i][j]+"</b> ";
+
+
+                      if ( j< (grupos[i].length-1) && grupos[i].length>2 ) {
+                          if (j< (grupos[i].length-2))
+                              text+= "<b>,</b> ";
+                          else
+                              text += " <b>e</b> ";
+                      } else {
+                          if (j< (grupos[i].length-1)) {
+                              text += " <b>e</b> ";
+                          }
+                      }
+                  }
+                  text+= "<br/>";
+                  document.getElementById("grupos").innerHTML = text;
+              }
+          }
+
+
+      </script>
+  </head>
+  <body>
+    <script>
+
+    
+    </script>
+  <hr />
+  <table border="0">
+      <tr>
+          <td>Nomes: <br />
+              <textarea style="width: 782px; height: 231px;" id="usuarios"></textarea></td>
+          <td style="vertical-align: top;"> <b>Condições:</b>
+              <br />
+              Quantidade de grupos
+              <input type="number" id="quantgrupos" name="quantgrupos" value="2" />
+
+          </td>
+      </tr>
+  </table>
+
+
+    <button onclick="geraGrupos();">Gerar grupos</button>
+  <hr />
+    <h3>Grupos</h3>
+    <div id="grupos" >
+    </div>
+
+  </body>
+</html>

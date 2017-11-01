@@ -1,0 +1,10 @@
+compartilhamento
+Abra o nautilus
+CTRL + L
+endereço smb://10.11.0.11
+no windows \\10.11.0.11\isos
+
+
+usuario: aluno
+senha: 123
+dominio: if

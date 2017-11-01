@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Crud com WebSql</title>
+    <script>
+
+    var db = openDatabase("segundoano", "1.0", "Segundo exemplo aula", 3*1024*1024);
+
+    db.transaction(function(tx){
+      var sql = "create table if not exists alunos(id integer  primary key autoincrement, nome text, cpf text);";
+
+      tx.executeSql(sql)
+    });
+
+    // google extentions jetbrains
+    function pesquisar() {
+        console.log("Executando!!!!");
+        var val = document.getElementById("pesq").value;
+
+        var sqlstring = "select * from alunos where nome like '%"+val+"%';";
+
+        console.log("String de pesquisa: ", sqlstring);
+
+        db.transaction(function (tx) {
+            tx.executeSql(sqlstring, [], function (tx,resultados) {
+                var msgs = "<table border='0'>";
+                console.log("Resultados: ", resultados.rows.length);
+
+                for(var i=0; i< resultados.rows.length; i++){
+                    msgs += "<tr>";
+                    msgs += "<td>"+resultados.rows.item(i).id +"</td>";
+                    msgs += "<td>"+resultados.rows.item(i).nome +"</td>";
+                    msgs += "<td>"+resultados.rows.item(i).cpf +"</td>";
+                    msgs += "</tr>";
+                }
+
+                msgs +="</table>";
+                document.getElementById("registros").innerHTML = msgs;
+
+            })
+        })
+    }
+
+
+    function cadastrar()
+    {
+       var nome = document.getElementById('nome').value;
+       var cpf = document.getElementById('cpf').value;
+
+       db.transaction(function(tx) {
+          tx.executeSql("insert into alunos(nome, cpf) values ('"+nome+"', '"+cpf+"');");
+       });
+
+       limpar();
+
+    }
+
+
+
+
+    function mostrarNotificacao(msg ) {
+     if (Notification.permission !== "granted")
+         Notification.requestPermission();
+     else {
+         var notification = new Notification(msg);
+     }
+
+    }
+
+
+    function remover(id) {
+
+        if (id == 0 || id =="")
+            id = window.prompt("Qual id? ");
+
+        if (window.confirm("Deseja remover o registro cujo id é "+id+"?")) {
+
+            db.transaction(function (tx) {
+                tx.executeSql("delete from alunos where id="+id);
+            });
+
+            mostrarNotificacao("O id: "+id+" foi removido com sucesso!!!");
+        } else {
+            mostrarNotificacao("Remoção cancelada!!!");
+        }
+    }
+
+    function mostrar()
+    {
+        db.transaction(function(tx){
+            tx.executeSql("select *  from alunos; ", [], function(tx, resultados){
+                var msgs = "<table border='0'>";
+                console.log("Resultados: ", resultados.rows.length);
+
+                for(var i=0; i< resultados.rows.length; i++){
+                    msgs += "<tr>";
+                    msgs += "<td>"+resultados.rows.item(i).id +"</td>";
+                    msgs += "<td>"+resultados.rows.item(i).nome +"</td>";
+                    msgs += "<td>"+resultados.rows.item(i).cpf +"</td>";
+                    msgs += "</tr>";
+                }
+
+                msgs +="</table>";
+                document.getElementById("registros").innerHTML = msgs;
+
+            })
+
+        });
+    }
+
+    function limpar()
+    {
+      document.getElementById("nome").value = "";
+      document.getElementById("cpf").value = "";
+      document.getElementById("idp").value  = "";
+    }
+    </script>
+  </head>
+  <body> onkeyup="pesquisar();"
+    <button onclick="limpar();">Limpar campos </button>
+    <fieldset>
+      <legend>Cadastro de pessoas </legend>
+      ID: <br />
+      <input type="text" id="idp" disabled />
+
+      <br />
+      Nome: <br />
+      <input type="text" style="width: 300px;" id="nome" name="name" />
+
+      <br />
+      CPF: <br />
+      <input type="text" style="width: 300px;" id="cpf" name="cpf" />
+
+    </fieldset>
+
+    <br />
+    <br />
+    <button id="novoregistro" onclick="cadastrar();"> Cadastrar </button>
+
+    <br />
+    <br />
+    Pesquisar:
+    <input type="text" id="pesq" onkeyup="pesquisar();" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Mostrar todos" onclick="mostrar();" />
+    <br/>
+    <fieldset>
+      <legend>Resultado </legend>
+      <div id="registros"></div>
+    </fieldset>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 02 de angular </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="angular-locale_pt-br.js"></script>
+
+</head>
+<body>
+
+    <div ng-app="aula02" ng-controller="controle">
+         <p> Nome <input type="text" ng-model="nome" /> </p>
+         <p> Sobrenome <input type="text" ng-model="sobrenome" /> </p>
+         <p> Seja bem vindo {{nome +  " " + sobrenome}}</p>
+         <p> Nome completo {{nomecompleto()}}</p>
+
+        <p> Nome: {{ nome | uppercase }}</p>
+        <input type="button" ng-click="cadastrar()" value="Cadastrar">
+         <h1>Nomes: </h1>
+        <li ng-repeat="x in nomes | orderBy:'sobrenome' " >
+             {{ (x.nome | lowercase)  + " " + (x.sobrenome | lowercase)}}
+        </li>
+        <br/>
+        Salário: <input type="number" ng-model="salario" />
+        <p>{{salario | currency:'R$'}} </p>
+        <input type="button" ng-click="getpagehtml()" value="get"/>
+        <h1>Segunda página</h1>
+        {{segundapaginahtml}}
+
+    </div>
+
+    <script>
+        var app = angular.module("aula02", []);
+        app.controller("controle", function ($scope, $http) {
+            $scope.nome="";
+            $scope.nomes=[];
+            $scope.sobrenome="";
+            $scope.segundapaginahtml="";
+            $scope.nomecompleto = function() {
+
+                return $scope.name + " " + $scope.sobrenome;
+            };
+            $scope.cadastrar =function () {
+                $scope.nomes.push({nome: $scope.nome, sobrenome: $scope.sobrenome});
+            };
+
+            $scope.getpagehtml = function(){
+               $http.get("segundapagina.html").then(function(response){
+                   $scope.segundapaginahtml =  response.data;
+               });
+            };
+
+        });
+
+    </script>
+
+
+
+</body>
+</html>

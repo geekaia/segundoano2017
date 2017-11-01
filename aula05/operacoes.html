@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+<script>
+
+  function lervalor()
+  {
+    var num1;
+    var num2;
+    var soma;
+
+    num1 = parseInt(window.prompt("Digite o 1º número"));
+    num2 = parseInt(window.prompt("Digite o 2º número"));
+
+    soma = num1+num2;
+    // alert("O resultado da soma é: "+ soma);
+
+    if (soma >= 10 ){
+        console.log("A soma é maior ou igual a 10");
+      }
+      else {
+        console.log("a soma é menor que 10");
+      }
+  }
+
+  lervalor();
+
+</script>
+</head>
+<body>
+
+
+<input type="button" value="Ler valor" onclick="lervalor();" />
+
+
+
+
+</body>
+
+</html>

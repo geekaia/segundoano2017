@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo multidimensional</title>
+
+
+
+    <script>
+
+      var matrizm = new Array();
+      for(var i=0; i < 5; i++)
+          matrizm[i] = new Array();
+
+      for(var i=0; i< 5; i++)
+        for(var j=0; j < 5; j++) {
+
+            if (i == j )
+              matrizm[i][j] = (i+j)*3;
+            else
+                matrizm[i][j] = i+j;
+         }
+
+         document.writeln("<table border='1' style='border-color: blue;'>")
+        for(var i=0; i< 5; i++) {
+          document.writeln("<tr>")
+          for(var j=0; j < 5; j++) {
+            if (i==j)
+              document.writeln("<td><b>"+matrizm[i][j]+"</b></td>");
+            else
+              document.writeln("<td>"+matrizm[i][j]+"</td>");
+
+            }
+
+          document.writeln("</tr>");
+        }
+        document.writeln("</table>")
+
+
+    </script>
+  </head>
+  <body>
+
+
+
+  </body>
+</html>

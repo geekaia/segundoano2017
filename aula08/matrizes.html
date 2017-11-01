@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+
+  <script>
+    // Declara uma matriz com tamanho indefinido
+    var matriz=[];
+
+    var cont=0;
+    while (true)
+    {
+      matriz[cont] = parseInt(window.prompt("Digite o "+cont+"º valor"));
+
+      var continuar = window.confirm("Deseja sair?");
+
+      if (continuar==true)
+      {
+        break;
+      }
+      cont=cont+1;
+    }
+
+
+    for(var i=0; i < matriz.length; i++)
+    {
+        document.writeln((i+1)+"º elemento: "+matriz[i]+"<br/>");
+    }
+  </script>
+
+</head>
+
+<body>
+
+
+
+
+</body>
+
+</html>

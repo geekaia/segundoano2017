@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ordenacao</title>
+    <script>
+
+    var matriz = [];
+
+    for(var i=0; i < 5; i++ )
+    {
+      matriz[i] = parseInt(window.prompt((i+1)+"º valor: "));
+    }
+
+    var tmp;
+    for(var i=0; i < 4; i++)
+    {
+      for (var j=(i+1); j < 5; j++ )
+      {
+
+        if (matriz[i] < matriz[j])
+        {
+          tmp = matriz[i];
+          matriz[i] = matriz[j];
+          matriz[j] = tmp;
+
+        }
+      }
+    }
+      document.writeln("<h1>Matriz ordenada</h1><br/>")
+      for(var i=0; i< matriz.length; i++)
+      {
+        document.writeln((i+1)+"º elemento: "+matriz[i]+"<br/>");
+      }
+
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Aula 03 </title>
+  <meta charset="utf-8" />
+  <script language="JavaScript">
+  function olamundo()
+  {
+    alert("Olá mundo");
+  }
+
+  function getConteudo()
+  {
+    var paragrafo;
+    paragrafo = document.getElementById("primeiroid");
+    console.log("O parágrafo tem o texto: "+paragrafo.innerText);
+  }
+
+  </script>
+</head>
+  <body>
+    <p id="primeiroid">
+      Texto
+    </p>
+    <input type="button" value="Get Conteudo" onclick="getConteudo();" />
+
+
+
+
+  </body>
+
+</html>

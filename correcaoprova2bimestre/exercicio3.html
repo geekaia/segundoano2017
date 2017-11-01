@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 3</title>
+
+    <script>
+
+        var matrizm = new Array();
+
+        for(var i=0; i< 3; i++)
+            matrizm[i] = new Array();
+
+        for (var i=0; i< 3;i++) {
+            for(var j=0; i < 3; j++){
+                var elemento=i+Math.pow(j,3);
+
+                if (elemento % 2 ==0 ) {
+                    elemento = 1;
+                }
+                matrizm[i][j] = elemento;
+            }
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+
+<!--
+3. Declare uma matriz multidimensional 3x3 onde os elementos são formados pela
+fórmula elemento=i+Math.pow(j,3) e quando o resto da divisão (por exemplo, valor % 2==0) do
+ elemento for zero será atribuído o valor 1
+
+-->
+</body>
+</html>

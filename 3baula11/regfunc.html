@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros em JS</title>
+
+    <script>
+
+        function Pessoa(nome, cpf, nacionalidade){
+            this.nome = nome;
+            this.cpf = cpf;
+            this.nacionalidade = nacionalidade;
+        }
+
+
+        // Parâmetros iniciais para p
+        var p = new Pessoa("Maria Madalena","123456","Israel");
+        var p2 = new Pessoa("Carlos Henrique","443345345","bras");
+
+        p.nome = window.prompt("Digite o seu nome");
+        p.cpf = window.prompt("Digite o seu CPF");
+        p.nacionalidade = window.prompt("Digite a sua nacionalidade");
+
+        document.writeln("Nome: "+p.nome+"<br/>");
+        document.writeln("CPF: "+p.cpf+"<br/>");
+        document.writeln("Nacionalidade: "+p.nacionalidade+"<br/>");
+
+        document.writeln("Pessoa2: <br/>");
+        document.writeln("Nome: "+p2.nome+"<br/>");
+        document.writeln("CPF: "+p2.cpf+"<br/>");
+        document.writeln("Nacionalidade: "+p2.nacionalidade+"<br/>");
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
